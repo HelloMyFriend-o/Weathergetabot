@@ -3,7 +3,7 @@ import psycopg2
 import requests
 import keyboards as kb
 from aiogram import types
-from config import APPID
+from config import APPID, PG_DB, PG_USER, PG_PASS, PG_HOST, PG_PORT
 from loader import dp
 
 
@@ -15,11 +15,11 @@ async def city_change(message: types.Message):
     data = r.json()
 
     con = psycopg2.connect(
-        database="Weathergetabot",
-        user="postgres",
-        password="gh5Tr43a",
-        host="127.0.0.1",
-        port="5432"
+        database=PG_DB,
+        user=PG_USER,
+        password=PG_PASS,
+        host=PG_HOST,
+        port=PG_PORT
     )
     cur = con.cursor()
 

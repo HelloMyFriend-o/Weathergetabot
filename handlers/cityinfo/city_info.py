@@ -1,6 +1,8 @@
 import logging
 import psycopg2
 from aiogram import types
+
+from config import PG_DB, PG_USER, PG_PASS, PG_HOST, PG_PORT
 from loader import dp
 
 
@@ -8,11 +10,11 @@ from loader import dp
 async def city_info(message: types.Message):
 
     con = psycopg2.connect(
-        database="Weathergetabot",
-        user="postgres",
-        password="gh5Tr43a",
-        host="127.0.0.1",
-        port="5432"
+        database=PG_DB,
+        user=PG_USER,
+        password=PG_PASS,
+        host=PG_HOST,
+        port=PG_PORT
     )
     cur = con.cursor()
 
