@@ -1,24 +1,17 @@
-import psycopg2
 import requests
 from aiogram import types
-from config import APPID, PG_DB, PG_USER, PG_PASS, PG_HOST, PG_PORT
+from config import APPID
+from database.db import connect_db
 
 
 def url_weather():
-    con = psycopg2.connect(
-        database=PG_DB,
-        user=PG_USER,
-        password=PG_PASS,
-        host=PG_HOST,
-        port=PG_PORT
-    )
+    con = connect_db()
     cur = con.cursor()
 
     user = types.User.get_current()
 
     cur.execute("SELECT lat FROM users WHERE user_id = %s", (user.id,))
     lat_tuple = cur.fetchone()
-
     cur.execute("SELECT lon FROM users WHERE user_id = %s", (user.id,))
     lon_tuple = cur.fetchone()
 
@@ -27,7 +20,6 @@ def url_weather():
 
     lat = float(''.join(map(str, lat_tuple)))
     lon = float(''.join(map(str, lon_tuple)))
-
     exclude = 'minutely,alerts'
     lang = 'ru'
     units = 'metric'

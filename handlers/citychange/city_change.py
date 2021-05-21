@@ -1,26 +1,19 @@
 import logging
-import psycopg2
 import requests
 import keyboards as kb
 from aiogram import types
-from config import APPID, PG_DB, PG_USER, PG_PASS, PG_HOST, PG_PORT
+from config import APPID
+from database.db import connect_db
 from loader import dp
 
 
 @dp.message_handler(lambda msg: msg["text"].lower().split(" ")[0] == "город")
 async def city_change(message: types.Message):
-
-    city_in_msg = ' '.join(message["text"].split(" ")[1:]).title()
+    city_in_msg = " ".join(message["text"].split(" ")[1:]).title()
     r = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city_in_msg}&appid={APPID}")
     data = r.json()
 
-    con = psycopg2.connect(
-        database=PG_DB,
-        user=PG_USER,
-        password=PG_PASS,
-        host=PG_HOST,
-        port=PG_PORT
-    )
+    con = connect_db()
     cur = con.cursor()
 
     user = types.User.get_current()
@@ -34,30 +27,29 @@ async def city_change(message: types.Message):
             cur.execute(
                 "UPDATE users SET city = %s, lat = %s, lon = %s WHERE user_id = %s",
                 (
-                 city_in_msg,
-                 data["coord"]["lat"],
-                 data["coord"]["lon"],
-                 user_id
-                 )
+                    city_in_msg,
+                    data["coord"]["lat"],
+                    data["coord"]["lon"],
+                    user_id
+                )
             )
         except KeyError:
             await message.answer("Некорректное название города")
         else:
             await message.answer("Город обновлен", reply_markup=kb.weather_kb)
-
     else:
         try:
             cur.execute(
                 "INSERT INTO users (first_name, last_name, user_id, city, lat, lon)"
-                " VALUES (%s, %s, %s, %s, %s, %s)",
+                "VALUES (%s, %s, %s, %s, %s, %s)",
                 (
-                 first_name,
-                 last_name,
-                 user_id,
-                 city_in_msg,
-                 data["coord"]["lat"],
-                 data["coord"]["lon"]
-                 )
+                    first_name,
+                    last_name,
+                    user_id,
+                    city_in_msg,
+                    data["coord"]["lat"],
+                    data["coord"]["lon"]
+                )
             )
         except KeyError:
             await message.answer("Некорректное название города")
