@@ -13,11 +13,13 @@ async def users_quantity(message: types.Message):
         con = connect_db()
         cur = con.cursor()
 
-        cur.execute("SELECT id, first_name, last_name, city FROM users")
+        cur.execute("SELECT first_name, last_name, city FROM users")
         users = cur.fetchall()
         users_quantity_msg = "Пользователи:\n\n"
 
-        for number, first_name, last_name, city in users:
+        number = 0
+        for first_name, last_name, city in users:
+            number += 1
             users_quantity_msg += f'{number}. {first_name} {last_name}:   {city}\n'
         await message.answer(users_quantity_msg)
 

@@ -9,6 +9,12 @@ APPID = str(os.getenv("APPID"))
 
 ADMIN_ID = str(os.getenv("ADMIN_ID"))
 
+WEBHOOK_HOST = str(os.getenv("WEBHOOK_HOST"))
+WEBHOOK_PATH = str(os.getenv("WEBHOOK_PATH"))
+
+WEBAPP_HOST = str(os.getenv("WEBAPP_HOST"))
+WEBAPP_PORT = str(os.getenv("WEBAPP_PORT"))
+
 PG_DB = str(os.getenv("PG_DB"))
 PG_USER = str(os.getenv("PG_USER"))
 PG_PASS = str(os.getenv("PG_PASS"))

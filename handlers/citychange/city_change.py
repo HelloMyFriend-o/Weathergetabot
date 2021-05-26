@@ -1,5 +1,7 @@
 import logging
 import requests
+from aiogram.dispatcher import filters
+
 import keyboards as kb
 from aiogram import types
 from config import APPID
@@ -7,7 +9,8 @@ from database.db import connect_db
 from loader import dp
 
 
-@dp.message_handler(lambda msg: msg["text"].lower().split(" ")[0] == "город")
+# @dp.message_handler(lambda msg: msg["text"].lower().split(" ")[0] == "город")
+@dp.message_handler(filters.Text(startswith='город', ignore_case=True))
 async def city_change(message: types.Message):
     city_in_msg = " ".join(message["text"].split(" ")[1:]).title()
     r = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city_in_msg}&appid={APPID}")
