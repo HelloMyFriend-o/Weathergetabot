@@ -2,7 +2,8 @@ from aiogram import types
 from loader import dp
 
 
-@dp.message_handler(commands=['start', 'help'])
+# Срабатывает при первом запуске бота или при вводе команды "/start"
+@dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
     await message.answer("Здравствуйте 🤖\n"
                          "Напишите интересующий Вас город.\n\n"

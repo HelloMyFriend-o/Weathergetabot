@@ -6,13 +6,17 @@ from .config import *
 from .url_weather import url_weather
 
 
+# Срабатывает когда пользователь нажимает на кнопку "Погода на завтра" (или оправляет эту фразу сам)
 @dp.message_handler(text=["Погода на завтра"])
 async def weather_tomorrow(message: types.Message):
     try:
+        # Пробуем получить данные о погоде
         data = url_weather()
     except TypeError:
+        # Выводим это сообщение, если пользователь запрашивает погоду до того, как указал город
         await message.answer(unspecified_city)
     else:
+        # Иначе выводим данные о погоде и дне недели
         tomorrow_temp = data["daily"][1]["temp"]
         tomorrow_daily = data["daily"][1]
         await message.answer(f'{datetime.datetime.fromtimestamp(tomorrow_daily["dt"]).strftime("%a: %d.%m")}\n\n'
@@ -22,5 +26,6 @@ async def weather_tomorrow(message: types.Message):
                              f'Ночью: {sign(tomorrow_temp["night"])}{round(tomorrow_temp["night"])} {degree}\n\n'
                              f'Ветер: {round(tomorrow_daily["wind_speed"])} м/с\n'
                              f'{tomorrow_daily["weather"][0]["description"].capitalize()}\n')
+        # Выводим смайлик погоды и кпопку "Подробнее"
         await message.answer(f'{weather_icons[tomorrow_daily["weather"][0]["icon"]]}',
                              reply_markup=kb.detailed_tomorrow)
