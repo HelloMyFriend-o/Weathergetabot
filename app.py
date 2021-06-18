@@ -4,7 +4,9 @@ from database.db import create_tb
 from aiogram.utils.executor import start_webhook
 from loader import on_startup, on_shutdown
 
+# Запуск бота
 if __name__ == '__main__':
+    # Создаем таблицу при первом запуске бота
     create_tb()
     start_webhook(
         dispatcher=dp,

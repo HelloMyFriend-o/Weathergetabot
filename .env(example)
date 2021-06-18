@@ -1,0 +1,25 @@
+# Это пример. В наименования этого файла оставить только '.env'
+
+
+# Токен телеграм бота.
+API_TOKEN = 1234567890:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+# API key, который нужно получить на https://openweathermap.org/
+APPID = 12312312312312312312312312312323
+
+# id пользователей, у которых будет доступ к команде /users для просмотра количества пользователей
+# При перечислении нескольких id, обязательно разделять их ', '(запятой с пробелом)
+ADMIN_ID = 1234567890, 1111111111, 2222222222
+
+# Настройки webhook
+WEBHOOK_HOST = https://1234567890qw.ngrok.io
+WEBHOOK_PATH =
+WEBAPP_HOST = localhost
+WEBAPP_PORT = 5000
+
+# Данные для подключения к БД
+PG_DB=weathergetabot
+PG_USER=postgres
+PG_PASS=12345
+PG_HOST=127.0.0.1
+PG_PORT=5432

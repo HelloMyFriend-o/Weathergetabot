@@ -7,7 +7,7 @@ load_dotenv()
 API_TOKEN = str(os.getenv("API_TOKEN"))
 APPID = str(os.getenv("APPID"))
 
-ADMIN_ID = str(os.getenv("ADMIN_ID"))
+ADMIN_ID = os.getenv("ADMIN_ID").split(', ')
 
 WEBHOOK_HOST = str(os.getenv("WEBHOOK_HOST"))
 WEBHOOK_PATH = str(os.getenv("WEBHOOK_PATH"))
