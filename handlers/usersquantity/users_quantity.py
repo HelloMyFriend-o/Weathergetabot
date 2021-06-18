@@ -11,7 +11,7 @@ async def users_quantity(message: types.Message):
     user = types.User.get_current()
     user_id = user.id
     # True, если id пользователя есть в списке id админов
-    if user_id in ADMIN_ID:
+    if str(user_id) in ADMIN_ID:
         # Подключаемся к БД
         con = connect_db()
         cur = con.cursor()

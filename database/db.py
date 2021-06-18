@@ -2,6 +2,7 @@ import psycopg2 as psycopg2
 from config import PG_DB, PG_USER, PG_PASS, PG_HOST, PG_PORT
 
 
+# Подключаемся к БД
 def connect_db():
     con = psycopg2.connect(
         database=PG_DB,
@@ -12,6 +13,7 @@ def connect_db():
     )
     return con
 
+
 # Создание таблицы в которой будут
 # храниться данные пользователей. А именно:
 #                                           - Имя
@@ -20,8 +22,6 @@ def connect_db():
 #                                           - Выбранный город
 #                                           - долгота выбранного города
 #                                           - широта выбранного города
-
-
 def create_tb():
     con = connect_db()
 
@@ -29,7 +29,7 @@ def create_tb():
     cur.execute("""CREATE TABLE IF NOT EXISTS users
     (
         first_name TEXT,
-        last_name TEXT NOT NULL DEFAULT 'qwerty',
+        last_name TEXT,
         user_id INTEGER,
         city TEXT,
         lat FLOAT,
