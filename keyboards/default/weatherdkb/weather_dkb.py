@@ -1,12 +1,10 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-# Создаем кнопки, которые будут располагаться внизу чата
+# Create buttons that will be located at the bottom of the chat.
 
-
-# Создание кнопок
+# Create buttons.
 btnWeatherToday = KeyboardButton("Текущая погода")
 btnWeatherTomorrow = KeyboardButton("Погода на завтра")
 btnWeatherWeek = KeyboardButton("Погода на неделю")
-
-# Добавление кнопок на клавиатуру
+# Add buttons to the keyboard.
 weather_kb = ReplyKeyboardMarkup(resize_keyboard=True).row(btnWeatherToday, btnWeatherTomorrow).add(btnWeatherWeek)

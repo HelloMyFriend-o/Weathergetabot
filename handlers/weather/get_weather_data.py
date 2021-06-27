@@ -5,33 +5,33 @@ from loader import APPID
 from database.db import connect_db
 
 
-# Возвращает данные о погоде в формате json
+# Returns weather data in json format.
 def get_weather_data():
-    # Подключаемся к БД
+    # Connecting to the DB.
     con = connect_db()
     cur = con.cursor()
 
-    # Получаем данные о пользователе, который написал сообщение
+    # Getting data about the user who wrote the message.
     user = types.User.get_current()
-    # Выбираем долготу и широту по id пользователя, и помещаем их в переменные
+    # Selecting the user's latitude and longitude by its id, and assign them in variables.
     cur.execute("SELECT lat FROM users WHERE user_id = %s", (user.id,))
     lat_tuple = cur.fetchone()
     cur.execute("SELECT lon FROM users WHERE user_id = %s", (user.id,))
     lon_tuple = cur.fetchone()
 
-    # Отключение от БД
+    # Disconnecting from the DB.
     con.commit()
     con.close()
-    # tuple -> float
+    # tuple -> float.
     lat = float(''.join(map(str, lat_tuple)))
     lon = float(''.join(map(str, lon_tuple)))
-    # Указываем, какие данные нас не интересуют (минуты, оповещения)
+    # Indicating what data is not needed.
     exclude = 'minutely,alerts'
-    # Указываем язык
+    # Language indication.
     lang = 'ru'
-    # Указываем единицы измерения
+    # Specifying Units of Measure.
     units = 'metric'
-    # Делаем запрос о погоде
-    r = requests.get(f"https://api.openweathermap.org/data/2.5/onecall?"
-                     f"lat={lat}&lon={lon}&exclude={exclude}&lang={lang}&units={units}&appid={APPID}")
-    return r.json()
+
+    weather_request = requests.get(f"https://api.openweathermap.org/data/2.5/onecall?"
+                                   f"lat={lat}&lon={lon}&exclude={exclude}&lang={lang}&units={units}&appid={APPID}")
+    return weather_request.json()

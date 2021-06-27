@@ -1,10 +1,10 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-# Создаем кнопку, которая будет прикреплена к сообщению
+# Create a button that will be attached to the message.
 
-# Создаем клавиатуру
+# Create keyboard.
 detailed_today = InlineKeyboardMarkup()
-# Создаем кнопку
+# Create button.
 det_today = InlineKeyboardButton(text="Подробнее", callback_data="detailed_today")
-# Добавляем кнопку на клавиатуру
+# Add buttons to the keyboard.
 detailed_today.insert(det_today)

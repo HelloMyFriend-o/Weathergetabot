@@ -7,14 +7,15 @@ from ..config import *
 from ..get_weather_data import get_weather_data
 
 
-# Срабатывает при нажатии на кнопку "Подробнее" после запроса "Погода на завтра"
+# Triggered when you click on the "Подробнее" button after the request for "Погода на завтра".
 @dp.callback_query_handler(text="detailed_tomorrow")
 async def detailed_weather_tomorrow(call: CallbackQuery):
     try:
-        # Пробуем получить данные о погоде
+        # Trying to get weather data.
         data = get_weather_data()
     except TypeError:
-        pass
+        # Send this message if the user asks for the weather before specifying a city.
+        await call.message.answer(unspecified_city)
     else:
         detailed_message = f'{datetime.datetime.fromtimestamp(data["daily"][1]["dt"]).strftime("%a: %d.%m")}\n\n' \
                            f'Давление: {round(data["daily"][0]["pressure"] * hpa_to_mmhg)} мм рт.ст.\n' \
@@ -26,16 +27,16 @@ async def detailed_weather_tomorrow(call: CallbackQuery):
             temp = round(hour["temp"])
             description = hour["weather"][0]["description"]
             icon = hour["weather"][0]["icon"]
-            # Записываем в переменную почасовые данные о погоде начиная с 00:00.
-            # Работает следующим образом:
-            # Если время не 00:00, то в условии ((False or False) and True) -> False;
-            # Если время 00:00, то в условии ((True or False) and True) -> True;
-            # Далее "toggle" становится True и условие выглядит так: ((False or True) and True) -> True;
-            # Через 24 цикла count < 24 примет значение False, и условие будет
-            # выглядеть так: ((False or True) and False) -> False
+            # Write in the variable hourly weather data starting from 00:00.
+            # Works like this:
+            # If the time is not 00:00, then in the condition ((False or False) and True) -> False;
+            # If the time is 00:00, then in the condition ((True or False) and True) -> True;
+            # Then "toggle" becomes True and the condition looks like this: ((False or True) and True) -> True;
+            # After 24 loops, count < 24 will become False, and the condition will look
+            # like this: ((False or True) and False) -> False
             if (time == '00:00' or toggle) and count < 24:
                 detailed_message += f'{time}  {sign(temp)}{temp} {degree}, {description}{weather_icons[icon]} \n'
                 count += 1
                 toggle = True
-        # Выводим сообщение с погодой указанной по часам
+        # Send a message indicating the weather by the hour.
         await call.message.answer(detailed_message)

@@ -16,9 +16,9 @@ async def on_shutdown(dp):
     await bot.delete_webhook()
 
 
-# Запуск бота
+# Bot startup.
 if __name__ == '__main__':
-    # Создаем таблицу при первом запуске бота
+    # Create a table when the bot is first launched.
     create_tb()
     start_webhook(
         dispatcher=dp,
