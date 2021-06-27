@@ -7,7 +7,7 @@ API_TOKEN = 1234567890:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 # API key, which you need to get at https://openweathermap.org/
 APPID = 12312312312312312312312312312323
 
-# Users ids who will have access to the '/users' command to view the number of users.
+# Users ids which will have access to the '/users' command to view the number of users.
 # When listing several ids, be sure to separate them with ', ' (comma with space).
 ADMIN_ID = 1234567890, 1111111111, 2222222222
 

@@ -7,17 +7,17 @@ from .config import *
 from .get_weather_data import get_weather_data
 
 
-# Triggered when user clicks on "Погода на неделю" button (or sends this phrase himself).
+# Triggered when user clicks on "Погода на неделю" button (or sends this phrase by himself).
 @dp.message_handler(text=["Погода на неделю"])
 async def weather_week(message: types.Message):
     try:
-        # Trying to get weather data.
+        # Trying to get the weather data.
         data = get_weather_data()
     except TypeError:
         # Send this message if user asks for the weather before specifying a city.
         await message.answer(unspecified_city)
     else:
-        # Otherwise, send weather data for a week.
+        # Otherwise, send the weather data for a week.
         for day in data["daily"]:
             await message.answer(f'{datetime.datetime.fromtimestamp(day["dt"]).strftime("%a: %d.%m")}\n\n'
                                  f'Утром: {sign(day["temp"]["morn"])}{round(day["temp"]["morn"])} {degree}\n'
@@ -26,5 +26,5 @@ async def weather_week(message: types.Message):
                                  f'Ночью: {sign(day["temp"]["night"])}{round(day["temp"]["night"])} {degree}\n\n'
                                  f'Ветер: {round(day["wind_speed"])} м/с\n'
                                  f'{day["weather"][0]["description"].capitalize()}\n')
-            # Send weather emoticon.
+            # Send the weather emoticon.
             await message.answer(f'{weather_icons[day["weather"][0]["icon"]]}')

@@ -11,7 +11,7 @@ from ..get_weather_data import get_weather_data
 @dp.callback_query_handler(text="detailed_tomorrow")
 async def detailed_weather_tomorrow(call: CallbackQuery):
     try:
-        # Trying to get weather data.
+        # Trying to get the weather data.
         data = get_weather_data()
     except TypeError:
         # Send this message if user asks for the weather before specifying a city.
@@ -38,5 +38,5 @@ async def detailed_weather_tomorrow(call: CallbackQuery):
                 detailed_message += f'{time}  {sign(temp)}{temp} {degree}, {description}{weather_icons[icon]} \n'
                 count += 1
                 toggle = True
-        # Send a message indicating the weather by the hour.
+        # Send a message indicating the weather by hour.
         await call.message.answer(detailed_message)

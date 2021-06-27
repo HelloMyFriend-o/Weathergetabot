@@ -1,8 +1,8 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-# Create buttons that will be located at the bottom of the chat.
+# Creating buttons that will be located at the bottom of the chat.
 
-# Create buttons.
+# Creating buttons.
 btnWeatherToday = KeyboardButton("Текущая погода")
 btnWeatherTomorrow = KeyboardButton("Погода на завтра")
 btnWeatherWeek = KeyboardButton("Погода на неделю")

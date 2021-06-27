@@ -7,7 +7,7 @@ from database.db import connect_db
 # Triggered when user enter the command "/users".
 @dp.message_handler(commands=["users"])
 async def users_quantity(message: types.Message):
-    # Getting data about user who wrote the message.
+    # Getting data about the user who wrote the message.
     user = types.User.get_current()
     user_id = user.id
 
@@ -21,7 +21,7 @@ async def users_quantity(message: types.Message):
         users_quantity_msg = "Пользователи:\n\n"
 
         number = 0
-        # The loop iterates over all users, and add first name, last name and city
+        # The loop iterates over all users, and add the first name, last name and city
         # of each of them to the "users_quantity_msg".
         for first_name, last_name, city in users:
             number += 1
