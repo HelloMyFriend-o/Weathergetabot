@@ -1,25 +1,25 @@
-# Это пример. В наименования этого файла оставить только '.env'
+# That's an example. Leave only '.env' in the name of this file
 
 
-# Токен телеграм бота.
+# Telegram bot TOKEN
 API_TOKEN = 1234567890:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
-# API key, который нужно получить на https://openweathermap.org/
+# API key, which you need to get at https://openweathermap.org/
 APPID = 12312312312312312312312312312323
 
-# id пользователей, у которых будет доступ к команде /users для просмотра количества пользователей
-# При перечислении нескольких id, обязательно разделять их ', '(запятой с пробелом)
+# id of users who will have access to the '/users' command to view the number of users.
+# When listing several ids, be sure to separate them with ', ' (comma with space).
 ADMIN_ID = 1234567890, 1111111111, 2222222222
 
-# Настройки webhook
+# Webhook settings
 WEBHOOK_HOST = https://1234567890qw.ngrok.io
 WEBHOOK_PATH =
 WEBAPP_HOST = localhost
 WEBAPP_PORT = 3000
 
-# Данные для подключения к БД
-PG_DB=dbname
-PG_USER=user
-PG_PASS=password
-PG_HOST=127.0.0.1
-PG_PORT=1234
+# DB settings
+PG_DB = dbname
+PG_USER = user
+PG_PASS = password
+PG_HOST = 127.0.0.1
+PG_PORT = 1234
