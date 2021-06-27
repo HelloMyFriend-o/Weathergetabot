@@ -1,8 +1,10 @@
 import datetime
+
 from aiogram.types import CallbackQuery
+
 from loader import dp
 from ..config import *
-from ..url_weather import url_weather
+from ..get_weather_data import get_weather_data
 
 
 # Срабатывает при нажатии на кнопку "Подробнее" после запроса "Погода на завтра"
@@ -10,7 +12,7 @@ from ..url_weather import url_weather
 async def detailed_weather_tomorrow(call: CallbackQuery):
     try:
         # Пробуем получить данные о погоде
-        data = url_weather()
+        data = get_weather_data()
     except TypeError:
         pass
     else:

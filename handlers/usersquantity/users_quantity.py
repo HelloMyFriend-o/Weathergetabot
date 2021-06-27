@@ -1,7 +1,7 @@
 from aiogram import types
-from config import ADMIN_ID
+
+from loader import dp, ADMIN_ID
 from database.db import connect_db
-from loader import dp
 
 
 # Срабатывает при вводе команды "/city"

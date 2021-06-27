@@ -1,5 +1,6 @@
 import psycopg2 as psycopg2
-from config import PG_DB, PG_USER, PG_PASS, PG_HOST, PG_PORT
+
+from loader import PG_DB, PG_USER, PG_PASS, PG_HOST, PG_PORT
 
 
 # Подключаемся к БД

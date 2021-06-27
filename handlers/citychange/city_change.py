@@ -1,12 +1,11 @@
-import logging
 import requests
+
 from aiogram.dispatcher import filters
+from aiogram import types
 
 import keyboards as kb
-from aiogram import types
-from config import APPID
+from loader import dp, APPID
 from database.db import connect_db
-from loader import dp
 
 
 # Срабатывает когда пользователь отправляет сообщение, которое начинается со слова "город"
@@ -76,4 +75,3 @@ async def city_change(message: types.Message):
     # Отключаемся от БД
     con.commit()
     con.close()
-    logging.basicConfig(level=logging.INFO)

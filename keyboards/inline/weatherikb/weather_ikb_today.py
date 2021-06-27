@@ -4,7 +4,6 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 # Создаем клавиатуру
 detailed_today = InlineKeyboardMarkup()
-
 # Создаем кнопку
 det_today = InlineKeyboardButton(text="Подробнее", callback_data="detailed_today")
 # Добавляем кнопку на клавиатуру

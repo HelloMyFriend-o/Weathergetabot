@@ -1,9 +1,11 @@
-from aiogram import types
-import keyboards as kb
 import datetime
+
+from aiogram import types
+
+import keyboards as kb
 from loader import dp
 from .config import *
-from .url_weather import url_weather
+from .get_weather_data import get_weather_data
 
 
 # Срабатывает когда пользователь нажимает на кнопку "Погода на завтра" (или оправляет эту фразу сам)
@@ -11,7 +13,7 @@ from .url_weather import url_weather
 async def weather_tomorrow(message: types.Message):
     try:
         # Пробуем получить данные о погоде
-        data = url_weather()
+        data = get_weather_data()
     except TypeError:
         # Выводим это сообщение, если пользователь запрашивает погоду до того, как указал город
         await message.answer(unspecified_city)

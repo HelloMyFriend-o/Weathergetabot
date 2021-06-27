@@ -1,11 +1,12 @@
 import requests
 from aiogram import types
-from config import APPID
+
+from loader import APPID
 from database.db import connect_db
 
 
 # Возвращает данные о погоде в формате json
-def url_weather():
+def get_weather_data():
     # Подключаемся к БД
     con = connect_db()
     cur = con.cursor()

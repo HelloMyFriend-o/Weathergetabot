@@ -15,11 +15,11 @@ ADMIN_ID = 1234567890, 1111111111, 2222222222
 WEBHOOK_HOST = https://1234567890qw.ngrok.io
 WEBHOOK_PATH =
 WEBAPP_HOST = localhost
-WEBAPP_PORT = 5000
+WEBAPP_PORT = 3000
 
 # Данные для подключения к БД
-PG_DB=weathergetabot
-PG_USER=postgres
-PG_PASS=12345
+PG_DB=dbname
+PG_USER=user
+PG_PASS=password
 PG_HOST=127.0.0.1
-PG_PORT=5432
+PG_PORT=1234

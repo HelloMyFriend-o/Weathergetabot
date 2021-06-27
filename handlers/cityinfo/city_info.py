@@ -1,5 +1,5 @@
-import logging
 from aiogram import types
+
 from database.db import connect_db
 from handlers.weather.config import unspecified_city
 from loader import dp
@@ -28,4 +28,3 @@ async def city_info(message: types.Message):
     # Отключаемся от БД
     con.commit()
     con.close()
-    logging.basicConfig(level=logging.INFO)
