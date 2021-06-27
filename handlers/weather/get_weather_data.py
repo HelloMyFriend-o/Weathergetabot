@@ -11,9 +11,9 @@ def get_weather_data():
     con = connect_db()
     cur = con.cursor()
 
-    # Getting data about the user who wrote the message.
+    # Getting data about user who wrote the message.
     user = types.User.get_current()
-    # Selecting the user's latitude and longitude by its id, and assign them in variables.
+    # Selecting user's latitude and longitude by its id, and assign them in variables.
     cur.execute("SELECT lat FROM users WHERE user_id = %s", (user.id,))
     lat_tuple = cur.fetchone()
     cur.execute("SELECT lon FROM users WHERE user_id = %s", (user.id,))

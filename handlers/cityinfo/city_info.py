@@ -11,17 +11,17 @@ async def city_info(message: types.Message):
     # Connecting to the DB.
     con = connect_db()
     cur = con.cursor()
-    # Retrieving data about the user who wrote the message.
+    # Getting data about user who wrote the message.
     user = types.User.get_current()
     user_id = user.id
 
     try:
-        # Selecting the user's city by its id.
+        # Selecting user's city by its id.
         cur.execute("SELECT city FROM users WHERE user_id = %s", (user_id,))
         city_tuple = cur.fetchone()
         city = "".join(map(str, city_tuple))
     except TypeError:
-        # Send this message if such user is not found or the city is not specified.
+        # Send this message if such user is not found or city is not specified.
         await message.answer(unspecified_city)
     else:
         await message.answer(f"Выбран город:  {city}")

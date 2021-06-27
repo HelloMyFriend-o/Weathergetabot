@@ -22,7 +22,7 @@ weather_icons = {
 # Celsius degree sign.
 degree = '\u2103'
 
-# needed for correct temperature display.
+# Needed for correct temperature display.
 sign = lambda x: "+" if x >= 1 else ""
 
 # Hectopascal to mmHg conversion.

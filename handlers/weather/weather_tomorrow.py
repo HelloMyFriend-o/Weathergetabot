@@ -8,17 +8,17 @@ from .config import *
 from .get_weather_data import get_weather_data
 
 
-# Triggered when the user clicks on the "Погода на завтра" button (or sends this phrase himself).
+# Triggered when user clicks on "Погода на завтра" button (or sends this phrase himself).
 @dp.message_handler(text=["Погода на завтра"])
 async def weather_tomorrow(message: types.Message):
     try:
         # Trying to get weather data.
         data = get_weather_data()
     except TypeError:
-        # Send this message if the user asks for the weather before specifying a city.
+        # Send this message if user asks for the weather before specifying a city.
         await message.answer(unspecified_city)
     else:
-        # Otherwise, send the weather data and the day of the week.
+        # Otherwise, send weather data and day of the week.
         tomorrow_temp = data["daily"][1]["temp"]
         tomorrow_daily = data["daily"][1]
         await message.answer(f'{datetime.datetime.fromtimestamp(tomorrow_daily["dt"]).strftime("%a: %d.%m")}\n\n'
@@ -28,6 +28,6 @@ async def weather_tomorrow(message: types.Message):
                              f'Ночью: {sign(tomorrow_temp["night"])}{round(tomorrow_temp["night"])} {degree}\n\n'
                              f'Ветер: {round(tomorrow_daily["wind_speed"])} м/с\n'
                              f'{tomorrow_daily["weather"][0]["description"].capitalize()}\n')
-        # Send the weather emoticon and the "Подробнее" button.
+        # Send weather emoticon and "Подробнее" button.
         await message.answer(f'{weather_icons[tomorrow_daily["weather"][0]["icon"]]}',
                              reply_markup=kb.detailed_tomorrow)

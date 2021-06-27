@@ -1,13 +1,13 @@
-# That's an example. Leave only '.env' in the name of this file
+# That's an example. Leave only '.env' in the name of this file.
 
 
-# Telegram bot TOKEN
+# Telegram bot TOKEN.
 API_TOKEN = 1234567890:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 # API key, which you need to get at https://openweathermap.org/
 APPID = 12312312312312312312312312312323
 
-# id of users who will have access to the '/users' command to view the number of users.
+# Users ids who will have access to the '/users' command to view the number of users.
 # When listing several ids, be sure to separate them with ', ' (comma with space).
 ADMIN_ID = 1234567890, 1111111111, 2222222222
 

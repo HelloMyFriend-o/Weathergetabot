@@ -6,14 +6,14 @@ from .config import *
 from .get_weather_data import get_weather_data
 
 
-# Triggered when the user clicks on the "Текущая погода" button (or sends this phrase himself).
+# Triggered when user clicks on the "Текущая погода" button (or sends this phrase himself).
 @dp.message_handler(text=["Текущая погода"])
 async def weather_today(message: types.Message):
     try:
         # Trying to get weather data.
         data = get_weather_data()
     except TypeError:
-        # Send this message if the user asks for the weather before specifying a city.
+        # Send this message if user asks for the weather before specifying a city.
         await message.answer(unspecified_city)
     else:
         # Otherwise, send weather data.
@@ -26,5 +26,5 @@ async def weather_today(message: types.Message):
                              f'Ночью: {sign(today["night"])}{round(today["night"])} {degree}\n\n'
                              f'Ветер: {round(data["current"]["wind_speed"])} м/с\n'
                              f'{data["current"]["weather"][0]["description"].capitalize()}\n')
-        # Send the weather emoticon and the "Подробнее" button.
+        # Send weather emoticon and "Подробнее" button.
         await message.answer(f'{weather_icons[data["current"]["weather"][0]["icon"]]}', reply_markup=kb.detailed_today)

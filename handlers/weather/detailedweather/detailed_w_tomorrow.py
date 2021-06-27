@@ -7,14 +7,14 @@ from ..config import *
 from ..get_weather_data import get_weather_data
 
 
-# Triggered when you click on the "Подробнее" button after the request for "Погода на завтра".
+# Triggered when user click on "Подробнее" button after the request for "Погода на завтра".
 @dp.callback_query_handler(text="detailed_tomorrow")
 async def detailed_weather_tomorrow(call: CallbackQuery):
     try:
         # Trying to get weather data.
         data = get_weather_data()
     except TypeError:
-        # Send this message if the user asks for the weather before specifying a city.
+        # Send this message if user asks for the weather before specifying a city.
         await call.message.answer(unspecified_city)
     else:
         detailed_message = f'{datetime.datetime.fromtimestamp(data["daily"][1]["dt"]).strftime("%a: %d.%m")}\n\n' \
@@ -28,7 +28,7 @@ async def detailed_weather_tomorrow(call: CallbackQuery):
             description = hour["weather"][0]["description"]
             icon = hour["weather"][0]["icon"]
             # Write in the variable hourly weather data starting from 00:00.
-            # Works like this:
+            # How it works:
             # If the time is not 00:00, then in the condition ((False or False) and True) -> False;
             # If the time is 00:00, then in the condition ((True or False) and True) -> True;
             # Then "toggle" becomes True and the condition looks like this: ((False or True) and True) -> True;
