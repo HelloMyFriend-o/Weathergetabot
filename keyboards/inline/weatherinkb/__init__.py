@@ -1,0 +1,2 @@
+from .weather_in_kb_for_today import detailed_weather_for_today_keyboard
+from .weather_in_kb_for_tomorrow import detailed_weather_for_tomorrow_keyboard

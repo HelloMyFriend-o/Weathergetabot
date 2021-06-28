@@ -3,7 +3,7 @@ import logging
 from aiogram.utils.executor import start_webhook
 
 from handlers import dp
-from database.db import create_tb
+from database.db import create_a_tb
 from loader import bot, WEBHOOK_URL, WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
 
 
@@ -19,7 +19,7 @@ async def on_shutdown(dp):
 # Bot startup.
 if __name__ == '__main__':
     # Create a table when the bot is first launched.
-    create_tb()
+    create_a_tb()
     start_webhook(
         dispatcher=dp,
         webhook_path=WEBHOOK_PATH,

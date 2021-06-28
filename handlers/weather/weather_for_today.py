@@ -8,7 +8,7 @@ from .get_weather_data import get_weather_data
 
 # Triggered when user clicks on the "Текущая погода" button (or sends this phrase by himself).
 @dp.message_handler(text=["Текущая погода"])
-async def weather_today(message: types.Message):
+async def get_weather_for_today(message: types.Message):
     try:
         # Trying to get the weather data.
         data = get_weather_data()
@@ -27,4 +27,4 @@ async def weather_today(message: types.Message):
                              f'Ветер: {round(data["current"]["wind_speed"])} м/с\n'
                              f'{data["current"]["weather"][0]["description"].capitalize()}\n')
         # Send the weather emoticon and the "Подробнее" button.
-        await message.answer(f'{weather_icons[data["current"]["weather"][0]["icon"]]}', reply_markup=kb.detailed_today)
+        await message.answer(f'{weather_icons[data["current"]["weather"][0]["icon"]]}', reply_markup=kb.detailed_weather_for_today_keyboard)

@@ -1,1 +1,1 @@
-from .weatherdkb import weather_kb
+from .weatherdefkb import weather_keyboard

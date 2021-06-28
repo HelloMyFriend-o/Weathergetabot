@@ -1,1 +1,1 @@
-from .weatherikb import detailed_today, detailed_tomorrow
+from .weatherinkb import detailed_weather_for_today_keyboard, detailed_weather_for_tomorrow_keyboard

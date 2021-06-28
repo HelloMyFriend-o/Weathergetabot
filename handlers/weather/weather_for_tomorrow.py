@@ -10,7 +10,7 @@ from .get_weather_data import get_weather_data
 
 # Triggered when user clicks on "Погода на завтра" button (or sends this phrase by himself).
 @dp.message_handler(text=["Погода на завтра"])
-async def weather_tomorrow(message: types.Message):
+async def get_weather_for_tomorrow(message: types.Message):
     try:
         # Trying to get the weather data.
         data = get_weather_data()
@@ -30,4 +30,4 @@ async def weather_tomorrow(message: types.Message):
                              f'{tomorrow_daily["weather"][0]["description"].capitalize()}\n')
         # Send the weather emoticon and the "Подробнее" button.
         await message.answer(f'{weather_icons[tomorrow_daily["weather"][0]["icon"]]}',
-                             reply_markup=kb.detailed_tomorrow)
+                             reply_markup=kb.detailed_weather_for_tomorrow_keyboard)

@@ -3,22 +3,21 @@ import psycopg2 as psycopg2
 from loader import PG_DB, PG_USER, PG_PASS, PG_HOST, PG_PORT
 
 
-def connect_db():
-    con = psycopg2.connect(
+def connect_to_db():
+    connection = psycopg2.connect(
         database=PG_DB,
         user=PG_USER,
         password=PG_PASS,
         host=PG_HOST,
         port=PG_PORT
     )
-    return con
+    return connection
 
 
-def create_tb():
-    con = connect_db()
-
-    cur = con.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS users
+def create_a_tb():
+    connection = connect_to_db()
+    cursor = connection.cursor()
+    cursor.execute("""CREATE TABLE IF NOT EXISTS users
     (
         first_name TEXT,
         last_name TEXT,
@@ -29,5 +28,5 @@ def create_tb():
     )""")
 
     # Disconnecting from the DB.
-    con.commit()
-    con.close()
+    connection.commit()
+    connection.close()

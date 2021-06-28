@@ -8,8 +8,8 @@ from ..get_weather_data import get_weather_data
 
 
 # Triggered when user click on "Подробнее" button after the request for "Текущая погода".
-@dp.callback_query_handler(text="detailed_today")
-async def detailed_weather_today(call: CallbackQuery):
+@dp.callback_query_handler(text="detailed_weather_for_today_keyboard")
+async def get_detailed_weather_for_today(call: CallbackQuery):
     try:
         # Trying to get the weather data.
         data = get_weather_data()

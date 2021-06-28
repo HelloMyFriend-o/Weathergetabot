@@ -9,7 +9,7 @@ from .get_weather_data import get_weather_data
 
 # Triggered when user clicks on "Погода на неделю" button (or sends this phrase by himself).
 @dp.message_handler(text=["Погода на неделю"])
-async def weather_week(message: types.Message):
+async def get_weather_for_a_week(message: types.Message):
     try:
         # Trying to get the weather data.
         data = get_weather_data()
